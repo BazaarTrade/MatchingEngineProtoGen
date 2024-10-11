@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package pb;
+package pbM;
 
-option go_package = "/pb";
+option go_package = "/pbM";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";

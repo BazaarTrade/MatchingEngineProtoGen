@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.27.3
-// source: proto/api.proto
+// source: proto/matchingEngine.proto
 
-package pb
+package pbM
 
 import (
 	context "context"
@@ -20,14 +20,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MatchingEngine_PlaceOrder_FullMethodName           = "/pb.MatchingEngine/PlaceOrder"
-	MatchingEngine_CancelOrder_FullMethodName          = "/pb.MatchingEngine/CancelOrder"
-	MatchingEngine_GetCurrentOrders_FullMethodName     = "/pb.MatchingEngine/GetCurrentOrders"
-	MatchingEngine_GetOrders_FullMethodName            = "/pb.MatchingEngine/GetOrders"
-	MatchingEngine_CreateOrderBook_FullMethodName      = "/pb.MatchingEngine/CreateOrderBook"
-	MatchingEngine_DeleteOrderBook_FullMethodName      = "/pb.MatchingEngine/DeleteOrderBook"
-	MatchingEngine_GetTrades_FullMethodName            = "/pb.MatchingEngine/GetTrades"
-	MatchingEngine_GetOrderBookSnapshot_FullMethodName = "/pb.MatchingEngine/GetOrderBookSnapshot"
+	MatchingEngine_PlaceOrder_FullMethodName           = "/pbM.MatchingEngine/PlaceOrder"
+	MatchingEngine_CancelOrder_FullMethodName          = "/pbM.MatchingEngine/CancelOrder"
+	MatchingEngine_GetCurrentOrders_FullMethodName     = "/pbM.MatchingEngine/GetCurrentOrders"
+	MatchingEngine_GetOrders_FullMethodName            = "/pbM.MatchingEngine/GetOrders"
+	MatchingEngine_CreateOrderBook_FullMethodName      = "/pbM.MatchingEngine/CreateOrderBook"
+	MatchingEngine_DeleteOrderBook_FullMethodName      = "/pbM.MatchingEngine/DeleteOrderBook"
+	MatchingEngine_GetTrades_FullMethodName            = "/pbM.MatchingEngine/GetTrades"
+	MatchingEngine_GetOrderBookSnapshot_FullMethodName = "/pbM.MatchingEngine/GetOrderBookSnapshot"
 )
 
 // MatchingEngineClient is the client API for MatchingEngine service.
@@ -351,7 +351,7 @@ type MatchingEngine_GetOrderBookSnapshotServer = grpc.ServerStreamingServer[Orde
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MatchingEngine_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.MatchingEngine",
+	ServiceName: "pbM.MatchingEngine",
 	HandlerType: (*MatchingEngineServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -391,5 +391,5 @@ var MatchingEngine_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "proto/api.proto",
+	Metadata: "proto/matchingEngine.proto",
 }
