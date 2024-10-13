@@ -9,7 +9,7 @@ import "google/protobuf/empty.proto";
 
 service MatchingEngine {
     rpc PlaceOrder(PlaceOrderReq) returns (Orders) {}
-    rpc CancelOrder(OrderID) returns (order) {}
+    rpc CancelOrder(OrderID) returns (Order) {}
 
     rpc GetCurrentOrders(UserID) returns (Orders) {}
     rpc GetOrders(UserID) returns (Orders) {}
@@ -17,8 +17,8 @@ service MatchingEngine {
     rpc CreateOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
 
-    rpc GetTrades(Ping) returns (stream Trades) {}
-    rpc GetOrderBookSnapshot(Ping) returns (stream OrderBookSnapshot) {}
+    rpc StreamTrades(Ping) returns (stream Trades) {}
+    rpc StreamPrecisedOrderBookSnapshot(Ping) returns (stream OrderBookSnapshot) {}
 }
 
 message PlaceOrderReq {
@@ -31,7 +31,7 @@ message PlaceOrderReq {
 }
 
 message Orders {
-    repeated order Orders = 1;
+    repeated Order Orders = 1;
 }
 
 message OrderID {
@@ -46,7 +46,7 @@ message OrderBookSymbol {
     string Symbol = 1;
 }
 
-message order {
+message Order {
     int64 ID = 1;
     int64 UserID = 2;
     bool IsBid = 3;
@@ -60,9 +60,7 @@ message order {
     google.protobuf.Timestamp ClosedAt = 11;
 }
 
-message Ping {
-    string Ping = 1;
-}
+message Ping {}
 
 message OrderBookSnapshot {
     string Symbol = 1;
@@ -79,10 +77,10 @@ message Limit {
 
 message Trades {
     string Symbol = 1;
-    repeated trade Trade = 2;
+    repeated Trade Trade = 2;
 }
 
-message trade {
+message Trade {
     bool IsBid = 1;
     string Price = 2;
     string Qty = 3;
