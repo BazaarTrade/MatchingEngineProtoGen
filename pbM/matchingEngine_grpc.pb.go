@@ -20,14 +20,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	MatchingEngine_PlaceOrder_FullMethodName                      = "/pbM.MatchingEngine/PlaceOrder"
-	MatchingEngine_CancelOrder_FullMethodName                     = "/pbM.MatchingEngine/CancelOrder"
-	MatchingEngine_GetCurrentOrders_FullMethodName                = "/pbM.MatchingEngine/GetCurrentOrders"
-	MatchingEngine_GetOrders_FullMethodName                       = "/pbM.MatchingEngine/GetOrders"
-	MatchingEngine_CreateOrderBook_FullMethodName                 = "/pbM.MatchingEngine/CreateOrderBook"
-	MatchingEngine_DeleteOrderBook_FullMethodName                 = "/pbM.MatchingEngine/DeleteOrderBook"
-	MatchingEngine_StreamTrades_FullMethodName                    = "/pbM.MatchingEngine/StreamTrades"
-	MatchingEngine_StreamPrecisedOrderBookSnapshot_FullMethodName = "/pbM.MatchingEngine/StreamPrecisedOrderBookSnapshot"
+	MatchingEngine_PlaceOrder_FullMethodName              = "/pbM.MatchingEngine/PlaceOrder"
+	MatchingEngine_CancelOrder_FullMethodName             = "/pbM.MatchingEngine/CancelOrder"
+	MatchingEngine_GetCurrentOrders_FullMethodName        = "/pbM.MatchingEngine/GetCurrentOrders"
+	MatchingEngine_GetOrders_FullMethodName               = "/pbM.MatchingEngine/GetOrders"
+	MatchingEngine_CreateOrderBook_FullMethodName         = "/pbM.MatchingEngine/CreateOrderBook"
+	MatchingEngine_DeleteOrderBook_FullMethodName         = "/pbM.MatchingEngine/DeleteOrderBook"
+	MatchingEngine_StreamTrades_FullMethodName            = "/pbM.MatchingEngine/StreamTrades"
+	MatchingEngine_StreamOrderBookSnapshot_FullMethodName = "/pbM.MatchingEngine/StreamOrderBookSnapshot"
 )
 
 // MatchingEngineClient is the client API for MatchingEngine service.
@@ -41,7 +41,7 @@ type MatchingEngineClient interface {
 	CreateOrderBook(ctx context.Context, in *OrderBookSymbol, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOrderBook(ctx context.Context, in *OrderBookSymbol, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	StreamTrades(ctx context.Context, in *Ping, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trades], error)
-	StreamPrecisedOrderBookSnapshot(ctx context.Context, in *Ping, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error)
+	StreamOrderBookSnapshot(ctx context.Context, in *Ping, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error)
 }
 
 type matchingEngineClient struct {
@@ -131,9 +131,9 @@ func (c *matchingEngineClient) StreamTrades(ctx context.Context, in *Ping, opts 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type MatchingEngine_StreamTradesClient = grpc.ServerStreamingClient[Trades]
 
-func (c *matchingEngineClient) StreamPrecisedOrderBookSnapshot(ctx context.Context, in *Ping, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error) {
+func (c *matchingEngineClient) StreamOrderBookSnapshot(ctx context.Context, in *Ping, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &MatchingEngine_ServiceDesc.Streams[1], MatchingEngine_StreamPrecisedOrderBookSnapshot_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &MatchingEngine_ServiceDesc.Streams[1], MatchingEngine_StreamOrderBookSnapshot_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +148,7 @@ func (c *matchingEngineClient) StreamPrecisedOrderBookSnapshot(ctx context.Conte
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type MatchingEngine_StreamPrecisedOrderBookSnapshotClient = grpc.ServerStreamingClient[OrderBookSnapshot]
+type MatchingEngine_StreamOrderBookSnapshotClient = grpc.ServerStreamingClient[OrderBookSnapshot]
 
 // MatchingEngineServer is the server API for MatchingEngine service.
 // All implementations must embed UnimplementedMatchingEngineServer
@@ -161,7 +161,7 @@ type MatchingEngineServer interface {
 	CreateOrderBook(context.Context, *OrderBookSymbol) (*emptypb.Empty, error)
 	DeleteOrderBook(context.Context, *OrderBookSymbol) (*emptypb.Empty, error)
 	StreamTrades(*Ping, grpc.ServerStreamingServer[Trades]) error
-	StreamPrecisedOrderBookSnapshot(*Ping, grpc.ServerStreamingServer[OrderBookSnapshot]) error
+	StreamOrderBookSnapshot(*Ping, grpc.ServerStreamingServer[OrderBookSnapshot]) error
 	mustEmbedUnimplementedMatchingEngineServer()
 }
 
@@ -193,8 +193,8 @@ func (UnimplementedMatchingEngineServer) DeleteOrderBook(context.Context, *Order
 func (UnimplementedMatchingEngineServer) StreamTrades(*Ping, grpc.ServerStreamingServer[Trades]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamTrades not implemented")
 }
-func (UnimplementedMatchingEngineServer) StreamPrecisedOrderBookSnapshot(*Ping, grpc.ServerStreamingServer[OrderBookSnapshot]) error {
-	return status.Errorf(codes.Unimplemented, "method StreamPrecisedOrderBookSnapshot not implemented")
+func (UnimplementedMatchingEngineServer) StreamOrderBookSnapshot(*Ping, grpc.ServerStreamingServer[OrderBookSnapshot]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamOrderBookSnapshot not implemented")
 }
 func (UnimplementedMatchingEngineServer) mustEmbedUnimplementedMatchingEngineServer() {}
 func (UnimplementedMatchingEngineServer) testEmbeddedByValue()                        {}
@@ -336,16 +336,16 @@ func _MatchingEngine_StreamTrades_Handler(srv interface{}, stream grpc.ServerStr
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type MatchingEngine_StreamTradesServer = grpc.ServerStreamingServer[Trades]
 
-func _MatchingEngine_StreamPrecisedOrderBookSnapshot_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _MatchingEngine_StreamOrderBookSnapshot_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Ping)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(MatchingEngineServer).StreamPrecisedOrderBookSnapshot(m, &grpc.GenericServerStream[Ping, OrderBookSnapshot]{ServerStream: stream})
+	return srv.(MatchingEngineServer).StreamOrderBookSnapshot(m, &grpc.GenericServerStream[Ping, OrderBookSnapshot]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type MatchingEngine_StreamPrecisedOrderBookSnapshotServer = grpc.ServerStreamingServer[OrderBookSnapshot]
+type MatchingEngine_StreamOrderBookSnapshotServer = grpc.ServerStreamingServer[OrderBookSnapshot]
 
 // MatchingEngine_ServiceDesc is the grpc.ServiceDesc for MatchingEngine service.
 // It's only intended for direct use with grpc.RegisterService,
@@ -386,8 +386,8 @@ var MatchingEngine_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "StreamPrecisedOrderBookSnapshot",
-			Handler:       _MatchingEngine_StreamPrecisedOrderBookSnapshot_Handler,
+			StreamName:    "StreamOrderBookSnapshot",
+			Handler:       _MatchingEngine_StreamOrderBookSnapshot_Handler,
 			ServerStreams: true,
 		},
 	},
