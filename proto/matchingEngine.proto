@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package pbM;
+
+option go_package = "/pbM";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service MatchingEngine {
+    rpc PlaceOrder(PlaceOrderReq) returns (Orders) {}
+    rpc CancelOrder(OrderID) returns (Order) {}
+
+    rpc GetCurrentOrders(UserID) returns (Orders) {}
+    rpc GetOrders(UserID) returns (Orders) {}
+
+    rpc CreateOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
+    rpc DeleteOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
+
+    rpc StreamTrades(Ping) returns (stream Trades) {}
+    rpc StreamOrderBookSnapshot(Ping) returns (stream OrderBookSnapshot) {}
+}
+
+message PlaceOrderReq {
+    int64 UserID = 1;
+    bool IsBid = 2;
+    string Symbol = 3;
+    string Qty = 4;
+    string Price = 5;
+    string Type = 6;
+}
+
+message Orders {
+    repeated Order Orders = 1;
+}
+
+message OrderID {
+    int64 OrderID = 1;
+}
+
+message UserID {
+    int64 UserID = 1;
+}
+
+message OrderBookSymbol {
+    string Symbol = 1;
+}
+
+message Order {
+    int64 ID = 1;
+    int64 UserID = 2;
+    bool IsBid = 3;
+    string Symbol = 4;
+    string Price = 5;
+    string Qty = 6;
+    string SizeFilled = 7;
+    string Status = 8;
+    string Type = 9;
+    google.protobuf.Timestamp CreatedAt = 10;
+    google.protobuf.Timestamp ClosedAt = 11;
+}
+
+message Ping {}
+
+message OrderBookSnapshot {
+    string Symbol = 1;
+    repeated Limit Bids = 2;
+    repeated Limit Asks = 3;
+    string BidsQty = 4;
+    string AsksQty = 5;
+}
+
+message Limit {
+    string Price = 1;
+    string Qty = 2;
+}
+
+message Trades {
+    string Symbol = 1;
+    repeated Trade Trades = 2;
+}
+
+message Trade {
+    bool IsBid = 1;
+    string Price = 2;
+    string Qty = 3;
+    google.protobuf.Timestamp Time = 4;
+}
