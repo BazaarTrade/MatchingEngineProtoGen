@@ -17,14 +17,14 @@ service MatchingEngine {
     rpc CreateOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(OrderBookSymbol) returns (google.protobuf.Empty) {}
 
-    rpc StreamTrades(Ping) returns (stream Trades) {}
-    rpc StreamOrderBookSnapshot(Ping) returns (stream OrderBookSnapshot) {}
+    rpc StreamTrades(Pair) returns (stream Trades) {}
+    rpc StreamOrderBookSnapshot(Pair) returns (stream OrderBookSnapshot) {}
 }
 
 message PlaceOrderReq {
     int64 UserID = 1;
     bool IsBid = 2;
-    string Symbol = 3;
+    string Pair = 3;
     string Qty = 4;
     string Price = 5;
     string Type = 6;
@@ -43,14 +43,14 @@ message UserID {
 }
 
 message OrderBookSymbol {
-    string Symbol = 1;
+    string Pair = 1;
 }
 
 message Order {
     int64 ID = 1;
     int64 UserID = 2;
     bool IsBid = 3;
-    string Symbol = 4;
+    string Pair = 4;
     string Price = 5;
     string Qty = 6;
     string SizeFilled = 7;
@@ -60,10 +60,12 @@ message Order {
     google.protobuf.Timestamp ClosedAt = 11;
 }
 
-message Ping {}
+message Pair {
+    string Pair = 1;
+}
 
 message OrderBookSnapshot {
-    string Symbol = 1;
+    string Pair = 1;
     repeated Limit Bids = 2;
     repeated Limit Asks = 3;
     string BidsQty = 4;
@@ -76,7 +78,7 @@ message Limit {
 }
 
 message Trades {
-    string Symbol = 1;
+    string Pair = 1;
     repeated Trade Trades = 2;
 }
 
