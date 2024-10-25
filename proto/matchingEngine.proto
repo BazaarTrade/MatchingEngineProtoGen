@@ -8,16 +8,17 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 service MatchingEngine {
-    rpc PlaceOrder(PlaceOrderReq) returns (Orders) {}
+    rpc PlaceOrder(PlaceOrderReq) returns (PlaceOrderRes) {}
     rpc CancelOrder(OrderID) returns (Order) {}
 
     rpc GetCurrentOrders(UserID) returns (Orders) {}
     rpc GetOrders(UserID) returns (Orders) {}
 
-    rpc CreateOrderBook(Pair) returns (google.protobuf.Empty) {}
+    rpc CreateOrderBook(PairParams) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(Pair) returns (google.protobuf.Empty) {}
 
-    rpc GetPairsPrecisions(google.protobuf.Empty) returns (PairsPrecisions) {}
+    rpc GetPairsParams(google.protobuf.Empty) returns (PairsParams) {}
+    rpc GetPairPricePrecisions(Pair) returns (PairPricePrecisions) {}
 
     rpc StreamTrades(Pair) returns (stream Trades) {}
     rpc StreamOrderBookSnapshot(Pair) returns (stream OrderBookSnapshot) {}
@@ -30,6 +31,11 @@ message PlaceOrderReq {
     string Qty = 4;
     string Price = 5;
     string Type = 6;
+}
+
+message PlaceOrderRes {
+    Order Order = 1;
+    repeated Order MatchOrders = 2;
 }
 
 message Orders {
@@ -58,11 +64,11 @@ message Order {
     google.protobuf.Timestamp ClosedAt = 11;
 }
 
-message PairsPrecisions {
-    repeated PairPrecisions pairPrecisions = 1;
+message PairsParams {
+    repeated PairParams PairParams = 1;
 }
 
-message PairPrecisions {
+message PairParams {
     string Pair = 1;
     repeated int32 PricePrecisions = 2;
     int32 QtyPrecision = 3;
@@ -95,4 +101,8 @@ message Trade {
     string Price = 2;
     string Qty = 3;
     google.protobuf.Timestamp Time = 4;
+}
+
+message PairPricePrecisions {
+    repeated int32 Precisions = 1;
 }
