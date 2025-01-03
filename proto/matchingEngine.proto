@@ -20,7 +20,7 @@ service MatchingEngine {
     rpc GetPairsParams(google.protobuf.Empty) returns (PairsParams) {}
     rpc GetPairPricePrecisions(Pair) returns (PairPricePrecisions) {}
 
-    rpc StreamTrades(Pair) returns (stream Trades) {}
+    rpc StreamTrade(Pair) returns (stream Trade) {}
     rpc StreamOrderBookSnapshot(Pair) returns (stream OrderBookSnapshot) {}
 }
 
@@ -91,16 +91,12 @@ message Limit {
     string Qty = 2;
 }
 
-message Trades {
-    string Pair = 1;
-    repeated Trade Trades = 2;
-}
-
 message Trade {
-    bool IsBid = 1;
-    string Price = 2;
-    string Qty = 3;
-    google.protobuf.Timestamp Time = 4;
+    string Pair = 1;
+    bool IsBid = 2;
+    string Price = 3;
+    string Qty = 4;
+    google.protobuf.Timestamp Time = 5;
 }
 
 message PairPricePrecisions {

@@ -28,7 +28,7 @@ const (
 	MatchingEngine_DeleteOrderBook_FullMethodName         = "/pbM.MatchingEngine/DeleteOrderBook"
 	MatchingEngine_GetPairsParams_FullMethodName          = "/pbM.MatchingEngine/GetPairsParams"
 	MatchingEngine_GetPairPricePrecisions_FullMethodName  = "/pbM.MatchingEngine/GetPairPricePrecisions"
-	MatchingEngine_StreamTrades_FullMethodName            = "/pbM.MatchingEngine/StreamTrades"
+	MatchingEngine_StreamTrade_FullMethodName             = "/pbM.MatchingEngine/StreamTrade"
 	MatchingEngine_StreamOrderBookSnapshot_FullMethodName = "/pbM.MatchingEngine/StreamOrderBookSnapshot"
 )
 
@@ -44,7 +44,7 @@ type MatchingEngineClient interface {
 	DeleteOrderBook(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetPairsParams(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PairsParams, error)
 	GetPairPricePrecisions(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*PairPricePrecisions, error)
-	StreamTrades(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trades], error)
+	StreamTrade(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trade], error)
 	StreamOrderBookSnapshot(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error)
 }
 
@@ -136,13 +136,13 @@ func (c *matchingEngineClient) GetPairPricePrecisions(ctx context.Context, in *P
 	return out, nil
 }
 
-func (c *matchingEngineClient) StreamTrades(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trades], error) {
+func (c *matchingEngineClient) StreamTrade(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trade], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &MatchingEngine_ServiceDesc.Streams[0], MatchingEngine_StreamTrades_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &MatchingEngine_ServiceDesc.Streams[0], MatchingEngine_StreamTrade_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Pair, Trades]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Pair, Trade]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (c *matchingEngineClient) StreamTrades(ctx context.Context, in *Pair, opts 
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type MatchingEngine_StreamTradesClient = grpc.ServerStreamingClient[Trades]
+type MatchingEngine_StreamTradeClient = grpc.ServerStreamingClient[Trade]
 
 func (c *matchingEngineClient) StreamOrderBookSnapshot(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -186,7 +186,7 @@ type MatchingEngineServer interface {
 	DeleteOrderBook(context.Context, *Pair) (*emptypb.Empty, error)
 	GetPairsParams(context.Context, *emptypb.Empty) (*PairsParams, error)
 	GetPairPricePrecisions(context.Context, *Pair) (*PairPricePrecisions, error)
-	StreamTrades(*Pair, grpc.ServerStreamingServer[Trades]) error
+	StreamTrade(*Pair, grpc.ServerStreamingServer[Trade]) error
 	StreamOrderBookSnapshot(*Pair, grpc.ServerStreamingServer[OrderBookSnapshot]) error
 	mustEmbedUnimplementedMatchingEngineServer()
 }
@@ -222,8 +222,8 @@ func (UnimplementedMatchingEngineServer) GetPairsParams(context.Context, *emptyp
 func (UnimplementedMatchingEngineServer) GetPairPricePrecisions(context.Context, *Pair) (*PairPricePrecisions, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPairPricePrecisions not implemented")
 }
-func (UnimplementedMatchingEngineServer) StreamTrades(*Pair, grpc.ServerStreamingServer[Trades]) error {
-	return status.Errorf(codes.Unimplemented, "method StreamTrades not implemented")
+func (UnimplementedMatchingEngineServer) StreamTrade(*Pair, grpc.ServerStreamingServer[Trade]) error {
+	return status.Errorf(codes.Unimplemented, "method StreamTrade not implemented")
 }
 func (UnimplementedMatchingEngineServer) StreamOrderBookSnapshot(*Pair, grpc.ServerStreamingServer[OrderBookSnapshot]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamOrderBookSnapshot not implemented")
@@ -393,16 +393,16 @@ func _MatchingEngine_GetPairPricePrecisions_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MatchingEngine_StreamTrades_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _MatchingEngine_StreamTrade_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Pair)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(MatchingEngineServer).StreamTrades(m, &grpc.GenericServerStream[Pair, Trades]{ServerStream: stream})
+	return srv.(MatchingEngineServer).StreamTrade(m, &grpc.GenericServerStream[Pair, Trade]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type MatchingEngine_StreamTradesServer = grpc.ServerStreamingServer[Trades]
+type MatchingEngine_StreamTradeServer = grpc.ServerStreamingServer[Trade]
 
 func _MatchingEngine_StreamOrderBookSnapshot_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Pair)
@@ -457,8 +457,8 @@ var MatchingEngine_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StreamTrades",
-			Handler:       _MatchingEngine_StreamTrades_Handler,
+			StreamName:    "StreamTrade",
+			Handler:       _MatchingEngine_StreamTrade_Handler,
 			ServerStreams: true,
 		},
 		{
