@@ -26,8 +26,6 @@ const (
 	MatchingEngine_GetOrders_FullMethodName               = "/pbM.MatchingEngine/GetOrders"
 	MatchingEngine_CreateOrderBook_FullMethodName         = "/pbM.MatchingEngine/CreateOrderBook"
 	MatchingEngine_DeleteOrderBook_FullMethodName         = "/pbM.MatchingEngine/DeleteOrderBook"
-	MatchingEngine_GetPairsParams_FullMethodName          = "/pbM.MatchingEngine/GetPairsParams"
-	MatchingEngine_GetPairPricePrecisions_FullMethodName  = "/pbM.MatchingEngine/GetPairPricePrecisions"
 	MatchingEngine_StreamTrade_FullMethodName             = "/pbM.MatchingEngine/StreamTrade"
 	MatchingEngine_StreamOrderBookSnapshot_FullMethodName = "/pbM.MatchingEngine/StreamOrderBookSnapshot"
 )
@@ -40,10 +38,8 @@ type MatchingEngineClient interface {
 	CancelOrder(ctx context.Context, in *OrderID, opts ...grpc.CallOption) (*Order, error)
 	GetCurrentOrders(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Orders, error)
 	GetOrders(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*Orders, error)
-	CreateOrderBook(ctx context.Context, in *PairParams, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateOrderBook(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOrderBook(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetPairsParams(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PairsParams, error)
-	GetPairPricePrecisions(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*PairPricePrecisions, error)
 	StreamTrade(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Trade], error)
 	StreamOrderBookSnapshot(ctx context.Context, in *Pair, opts ...grpc.CallOption) (grpc.ServerStreamingClient[OrderBookSnapshot], error)
 }
@@ -96,7 +92,7 @@ func (c *matchingEngineClient) GetOrders(ctx context.Context, in *UserID, opts .
 	return out, nil
 }
 
-func (c *matchingEngineClient) CreateOrderBook(ctx context.Context, in *PairParams, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *matchingEngineClient) CreateOrderBook(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, MatchingEngine_CreateOrderBook_FullMethodName, in, out, cOpts...)
@@ -110,26 +106,6 @@ func (c *matchingEngineClient) DeleteOrderBook(ctx context.Context, in *Pair, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, MatchingEngine_DeleteOrderBook_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *matchingEngineClient) GetPairsParams(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PairsParams, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PairsParams)
-	err := c.cc.Invoke(ctx, MatchingEngine_GetPairsParams_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *matchingEngineClient) GetPairPricePrecisions(ctx context.Context, in *Pair, opts ...grpc.CallOption) (*PairPricePrecisions, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PairPricePrecisions)
-	err := c.cc.Invoke(ctx, MatchingEngine_GetPairPricePrecisions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -182,10 +158,8 @@ type MatchingEngineServer interface {
 	CancelOrder(context.Context, *OrderID) (*Order, error)
 	GetCurrentOrders(context.Context, *UserID) (*Orders, error)
 	GetOrders(context.Context, *UserID) (*Orders, error)
-	CreateOrderBook(context.Context, *PairParams) (*emptypb.Empty, error)
+	CreateOrderBook(context.Context, *Pair) (*emptypb.Empty, error)
 	DeleteOrderBook(context.Context, *Pair) (*emptypb.Empty, error)
-	GetPairsParams(context.Context, *emptypb.Empty) (*PairsParams, error)
-	GetPairPricePrecisions(context.Context, *Pair) (*PairPricePrecisions, error)
 	StreamTrade(*Pair, grpc.ServerStreamingServer[Trade]) error
 	StreamOrderBookSnapshot(*Pair, grpc.ServerStreamingServer[OrderBookSnapshot]) error
 	mustEmbedUnimplementedMatchingEngineServer()
@@ -210,17 +184,11 @@ func (UnimplementedMatchingEngineServer) GetCurrentOrders(context.Context, *User
 func (UnimplementedMatchingEngineServer) GetOrders(context.Context, *UserID) (*Orders, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrders not implemented")
 }
-func (UnimplementedMatchingEngineServer) CreateOrderBook(context.Context, *PairParams) (*emptypb.Empty, error) {
+func (UnimplementedMatchingEngineServer) CreateOrderBook(context.Context, *Pair) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrderBook not implemented")
 }
 func (UnimplementedMatchingEngineServer) DeleteOrderBook(context.Context, *Pair) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrderBook not implemented")
-}
-func (UnimplementedMatchingEngineServer) GetPairsParams(context.Context, *emptypb.Empty) (*PairsParams, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPairsParams not implemented")
-}
-func (UnimplementedMatchingEngineServer) GetPairPricePrecisions(context.Context, *Pair) (*PairPricePrecisions, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPairPricePrecisions not implemented")
 }
 func (UnimplementedMatchingEngineServer) StreamTrade(*Pair, grpc.ServerStreamingServer[Trade]) error {
 	return status.Errorf(codes.Unimplemented, "method StreamTrade not implemented")
@@ -322,7 +290,7 @@ func _MatchingEngine_GetOrders_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _MatchingEngine_CreateOrderBook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PairParams)
+	in := new(Pair)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -334,7 +302,7 @@ func _MatchingEngine_CreateOrderBook_Handler(srv interface{}, ctx context.Contex
 		FullMethod: MatchingEngine_CreateOrderBook_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MatchingEngineServer).CreateOrderBook(ctx, req.(*PairParams))
+		return srv.(MatchingEngineServer).CreateOrderBook(ctx, req.(*Pair))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -353,42 +321,6 @@ func _MatchingEngine_DeleteOrderBook_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MatchingEngineServer).DeleteOrderBook(ctx, req.(*Pair))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MatchingEngine_GetPairsParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MatchingEngineServer).GetPairsParams(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MatchingEngine_GetPairsParams_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MatchingEngineServer).GetPairsParams(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MatchingEngine_GetPairPricePrecisions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Pair)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MatchingEngineServer).GetPairPricePrecisions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MatchingEngine_GetPairPricePrecisions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MatchingEngineServer).GetPairPricePrecisions(ctx, req.(*Pair))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -445,14 +377,6 @@ var MatchingEngine_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteOrderBook",
 			Handler:    _MatchingEngine_DeleteOrderBook_Handler,
-		},
-		{
-			MethodName: "GetPairsParams",
-			Handler:    _MatchingEngine_GetPairsParams_Handler,
-		},
-		{
-			MethodName: "GetPairPricePrecisions",
-			Handler:    _MatchingEngine_GetPairPricePrecisions_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

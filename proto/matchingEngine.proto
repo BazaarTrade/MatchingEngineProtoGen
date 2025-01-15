@@ -14,11 +14,8 @@ service MatchingEngine {
     rpc GetCurrentOrders(UserID) returns (Orders) {}
     rpc GetOrders(UserID) returns (Orders) {}
 
-    rpc CreateOrderBook(PairParams) returns (google.protobuf.Empty) {}
+    rpc CreateOrderBook(Pair) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(Pair) returns (google.protobuf.Empty) {}
-
-    rpc GetPairsParams(google.protobuf.Empty) returns (PairsParams) {}
-    rpc GetPairPricePrecisions(Pair) returns (PairPricePrecisions) {}
 
     rpc StreamTrade(Pair) returns (stream Trade) {}
     rpc StreamOrderBookSnapshot(Pair) returns (stream OrderBookSnapshot) {}
@@ -64,16 +61,6 @@ message Order {
     google.protobuf.Timestamp ClosedAt = 11;
 }
 
-message PairsParams {
-    repeated PairParams PairParams = 1;
-}
-
-message PairParams {
-    string Pair = 1;
-    repeated int32 PricePrecisions = 2;
-    int32 QtyPrecision = 3;
-}
-
 message Pair {
     string Pair = 1;
 }
@@ -97,8 +84,4 @@ message Trade {
     string Price = 3;
     string Qty = 4;
     google.protobuf.Timestamp Time = 5;
-}
-
-message PairPricePrecisions {
-    repeated int32 Precisions = 1;
 }
