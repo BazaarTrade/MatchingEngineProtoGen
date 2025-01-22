@@ -17,7 +17,7 @@ service MatchingEngine {
     rpc CreateOrderBook(Pair) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(Pair) returns (google.protobuf.Empty) {}
 
-    rpc StreamTrade(Pair) returns (stream Trade) {}
+    rpc StreamTrades(Pair) returns (stream Trades) {}
     rpc StreamOrderBookSnapshot(Pair) returns (stream OrderBookSnapshot) {}
 }
 
@@ -76,6 +76,10 @@ message OrderBookSnapshot {
 message Limit {
     string Price = 1;
     string Qty = 2;
+}
+
+message Trades {
+    repeated Trade Trades = 1;
 }
 
 message Trade {
