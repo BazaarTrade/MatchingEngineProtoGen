@@ -164,53 +164,6 @@ func (x *PlaceOrderRes) GetMatchOrders() []*Order {
 	return nil
 }
 
-type Orders struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Orders []*Order `protobuf:"bytes,1,rep,name=Orders,proto3" json:"Orders,omitempty"`
-}
-
-func (x *Orders) Reset() {
-	*x = Orders{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Orders) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Orders) ProtoMessage() {}
-
-func (x *Orders) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Orders.ProtoReflect.Descriptor instead.
-func (*Orders) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *Orders) GetOrders() []*Order {
-	if x != nil {
-		return x.Orders
-	}
-	return nil
-}
-
 type OrderID struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -222,7 +175,7 @@ type OrderID struct {
 func (x *OrderID) Reset() {
 	*x = OrderID{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[3]
+		mi := &file_proto_matchingEngine_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -235,7 +188,7 @@ func (x *OrderID) String() string {
 func (*OrderID) ProtoMessage() {}
 
 func (x *OrderID) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[3]
+	mi := &file_proto_matchingEngine_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -248,59 +201,12 @@ func (x *OrderID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderID.ProtoReflect.Descriptor instead.
 func (*OrderID) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{3}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *OrderID) GetOrderID() int64 {
 	if x != nil {
 		return x.OrderID
-	}
-	return 0
-}
-
-type UserID struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	UserID int64 `protobuf:"varint,1,opt,name=UserID,proto3" json:"UserID,omitempty"`
-}
-
-func (x *UserID) Reset() {
-	*x = UserID{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *UserID) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserID) ProtoMessage() {}
-
-func (x *UserID) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserID.ProtoReflect.Descriptor instead.
-func (*UserID) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *UserID) GetUserID() int64 {
-	if x != nil {
-		return x.UserID
 	}
 	return 0
 }
@@ -326,7 +232,7 @@ type Order struct {
 func (x *Order) Reset() {
 	*x = Order{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[5]
+		mi := &file_proto_matchingEngine_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -339,7 +245,7 @@ func (x *Order) String() string {
 func (*Order) ProtoMessage() {}
 
 func (x *Order) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[5]
+	mi := &file_proto_matchingEngine_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -352,7 +258,7 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Order.ProtoReflect.Descriptor instead.
 func (*Order) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{5}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Order) GetID() int64 {
@@ -443,7 +349,7 @@ type Pair struct {
 func (x *Pair) Reset() {
 	*x = Pair{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[6]
+		mi := &file_proto_matchingEngine_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -456,7 +362,7 @@ func (x *Pair) String() string {
 func (*Pair) ProtoMessage() {}
 
 func (x *Pair) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[6]
+	mi := &file_proto_matchingEngine_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -469,7 +375,7 @@ func (x *Pair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Pair.ProtoReflect.Descriptor instead.
 func (*Pair) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{6}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Pair) GetPair() string {
@@ -494,7 +400,7 @@ type OrderBookSnapshot struct {
 func (x *OrderBookSnapshot) Reset() {
 	*x = OrderBookSnapshot{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[7]
+		mi := &file_proto_matchingEngine_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -507,7 +413,7 @@ func (x *OrderBookSnapshot) String() string {
 func (*OrderBookSnapshot) ProtoMessage() {}
 
 func (x *OrderBookSnapshot) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[7]
+	mi := &file_proto_matchingEngine_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -520,7 +426,7 @@ func (x *OrderBookSnapshot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderBookSnapshot.ProtoReflect.Descriptor instead.
 func (*OrderBookSnapshot) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{7}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *OrderBookSnapshot) GetPair() string {
@@ -570,7 +476,7 @@ type Limit struct {
 func (x *Limit) Reset() {
 	*x = Limit{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[8]
+		mi := &file_proto_matchingEngine_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -583,7 +489,7 @@ func (x *Limit) String() string {
 func (*Limit) ProtoMessage() {}
 
 func (x *Limit) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[8]
+	mi := &file_proto_matchingEngine_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -596,7 +502,7 @@ func (x *Limit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Limit.ProtoReflect.Descriptor instead.
 func (*Limit) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{8}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Limit) GetPrice() string {
@@ -624,7 +530,7 @@ type Trades struct {
 func (x *Trades) Reset() {
 	*x = Trades{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[9]
+		mi := &file_proto_matchingEngine_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -637,7 +543,7 @@ func (x *Trades) String() string {
 func (*Trades) ProtoMessage() {}
 
 func (x *Trades) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[9]
+	mi := &file_proto_matchingEngine_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -650,7 +556,7 @@ func (x *Trades) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Trades.ProtoReflect.Descriptor instead.
 func (*Trades) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{9}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *Trades) GetTrades() []*Trade {
@@ -675,7 +581,7 @@ type Trade struct {
 func (x *Trade) Reset() {
 	*x = Trade{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_proto_matchingEngine_proto_msgTypes[10]
+		mi := &file_proto_matchingEngine_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -688,7 +594,7 @@ func (x *Trade) String() string {
 func (*Trade) ProtoMessage() {}
 
 func (x *Trade) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_matchingEngine_proto_msgTypes[10]
+	mi := &file_proto_matchingEngine_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -701,7 +607,7 @@ func (x *Trade) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Trade.ProtoReflect.Descriptor instead.
 func (*Trade) Descriptor() ([]byte, []int) {
-	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{10}
+	return file_proto_matchingEngine_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Trade) GetPair() string {
@@ -763,14 +669,9 @@ var file_proto_matchingEngine_proto_rawDesc = []byte{
 	0x65, 0x72, 0x12, 0x2c, 0x0a, 0x0b, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72,
 	0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72,
 	0x64, 0x65, 0x72, 0x52, 0x0b, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
-	0x22, 0x2c, 0x0a, 0x06, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12, 0x22, 0x0a, 0x06, 0x4f, 0x72,
-	0x64, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0a, 0x2e, 0x70, 0x62, 0x4d,
-	0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x06, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x22, 0x23,
-	0x0a, 0x07, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x44, 0x12, 0x18, 0x0a, 0x07, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x4f, 0x72, 0x64, 0x65,
-	0x72, 0x49, 0x44, 0x22, 0x20, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12, 0x16, 0x0a,
-	0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x55,
-	0x73, 0x65, 0x72, 0x49, 0x44, 0x22, 0xbf, 0x02, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
+	0x22, 0x23, 0x0a, 0x07, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x49, 0x44, 0x12, 0x18, 0x0a, 0x07, 0x4f,
+	0x72, 0x64, 0x65, 0x72, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x4f, 0x72,
+	0x64, 0x65, 0x72, 0x49, 0x44, 0x22, 0xbf, 0x02, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12,
 	0x0e, 0x0a, 0x02, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x49, 0x44, 0x12,
 	0x16, 0x0a, 0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52,
 	0x06, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x49, 0x73, 0x42, 0x69, 0x64,
@@ -816,7 +717,7 @@ var file_proto_matchingEngine_proto_rawDesc = []byte{
 	0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x51, 0x74, 0x79, 0x12, 0x2e, 0x0a, 0x04,
 	0x54, 0x69, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
-	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x54, 0x69, 0x6d, 0x65, 0x32, 0xaa, 0x03, 0x0a,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x54, 0x69, 0x6d, 0x65, 0x32, 0xd1, 0x02, 0x0a,
 	0x0e, 0x4d, 0x61, 0x74, 0x63, 0x68, 0x69, 0x6e, 0x67, 0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x12,
 	0x36, 0x0a, 0x0a, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x12, 0x2e,
 	0x70, 0x62, 0x4d, 0x2e, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x52, 0x65,
@@ -824,27 +725,21 @@ var file_proto_matchingEngine_proto_rawDesc = []byte{
 	0x65, 0x72, 0x52, 0x65, 0x73, 0x22, 0x00, 0x12, 0x29, 0x0a, 0x0b, 0x43, 0x61, 0x6e, 0x63, 0x65,
 	0x6c, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x0c, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64,
 	0x65, 0x72, 0x49, 0x44, 0x1a, 0x0a, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72,
-	0x22, 0x00, 0x12, 0x2e, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74,
-	0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12, 0x0b, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x55, 0x73, 0x65,
-	0x72, 0x49, 0x44, 0x1a, 0x0b, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73,
-	0x22, 0x00, 0x12, 0x27, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x12,
-	0x0b, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x49, 0x44, 0x1a, 0x0b, 0x2e, 0x70,
-	0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x73, 0x22, 0x00, 0x12, 0x36, 0x0a, 0x0f, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x12, 0x09,
-	0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
-	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x22, 0x00, 0x12, 0x36, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64,
-	0x65, 0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x12, 0x09, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69,
-	0x72, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x2a, 0x0a, 0x0c, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x72, 0x61, 0x64, 0x65, 0x73, 0x12, 0x09, 0x2e, 0x70, 0x62,
-	0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x1a, 0x0b, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x54, 0x72, 0x61,
-	0x64, 0x65, 0x73, 0x22, 0x00, 0x30, 0x01, 0x12, 0x40, 0x0a, 0x17, 0x53, 0x74, 0x72, 0x65, 0x61,
-	0x6d, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68,
-	0x6f, 0x74, 0x12, 0x09, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x1a, 0x16, 0x2e,
-	0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x53, 0x6e, 0x61,
-	0x70, 0x73, 0x68, 0x6f, 0x74, 0x22, 0x00, 0x30, 0x01, 0x42, 0x06, 0x5a, 0x04, 0x2f, 0x70, 0x62,
-	0x4d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x00, 0x12, 0x36, 0x0a, 0x0f, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65,
+	0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x12, 0x09, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72,
+	0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x36, 0x0a, 0x0f, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x6f, 0x6f, 0x6b, 0x12, 0x09, 0x2e,
+	0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x1a, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79,
+	0x22, 0x00, 0x12, 0x2a, 0x0a, 0x0c, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x72, 0x61, 0x64,
+	0x65, 0x73, 0x12, 0x09, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x50, 0x61, 0x69, 0x72, 0x1a, 0x0b, 0x2e,
+	0x70, 0x62, 0x4d, 0x2e, 0x54, 0x72, 0x61, 0x64, 0x65, 0x73, 0x22, 0x00, 0x30, 0x01, 0x12, 0x40,
+	0x0a, 0x17, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x42, 0x6f, 0x6f,
+	0x6b, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x12, 0x09, 0x2e, 0x70, 0x62, 0x4d, 0x2e,
+	0x50, 0x61, 0x69, 0x72, 0x1a, 0x16, 0x2e, 0x70, 0x62, 0x4d, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72,
+	0x42, 0x6f, 0x6f, 0x6b, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x22, 0x00, 0x30, 0x01,
+	0x42, 0x06, 0x5a, 0x04, 0x2f, 0x70, 0x62, 0x4d, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -859,53 +754,46 @@ func file_proto_matchingEngine_proto_rawDescGZIP() []byte {
 	return file_proto_matchingEngine_proto_rawDescData
 }
 
-var file_proto_matchingEngine_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_proto_matchingEngine_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_proto_matchingEngine_proto_goTypes = []any{
 	(*PlaceOrderReq)(nil),         // 0: pbM.PlaceOrderReq
 	(*PlaceOrderRes)(nil),         // 1: pbM.PlaceOrderRes
-	(*Orders)(nil),                // 2: pbM.Orders
-	(*OrderID)(nil),               // 3: pbM.OrderID
-	(*UserID)(nil),                // 4: pbM.UserID
-	(*Order)(nil),                 // 5: pbM.Order
-	(*Pair)(nil),                  // 6: pbM.Pair
-	(*OrderBookSnapshot)(nil),     // 7: pbM.OrderBookSnapshot
-	(*Limit)(nil),                 // 8: pbM.Limit
-	(*Trades)(nil),                // 9: pbM.Trades
-	(*Trade)(nil),                 // 10: pbM.Trade
-	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),         // 12: google.protobuf.Empty
+	(*OrderID)(nil),               // 2: pbM.OrderID
+	(*Order)(nil),                 // 3: pbM.Order
+	(*Pair)(nil),                  // 4: pbM.Pair
+	(*OrderBookSnapshot)(nil),     // 5: pbM.OrderBookSnapshot
+	(*Limit)(nil),                 // 6: pbM.Limit
+	(*Trades)(nil),                // 7: pbM.Trades
+	(*Trade)(nil),                 // 8: pbM.Trade
+	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 10: google.protobuf.Empty
 }
 var file_proto_matchingEngine_proto_depIdxs = []int32{
-	5,  // 0: pbM.PlaceOrderRes.Order:type_name -> pbM.Order
-	5,  // 1: pbM.PlaceOrderRes.MatchOrders:type_name -> pbM.Order
-	5,  // 2: pbM.Orders.Orders:type_name -> pbM.Order
-	11, // 3: pbM.Order.CreatedAt:type_name -> google.protobuf.Timestamp
-	11, // 4: pbM.Order.ClosedAt:type_name -> google.protobuf.Timestamp
-	8,  // 5: pbM.OrderBookSnapshot.Bids:type_name -> pbM.Limit
-	8,  // 6: pbM.OrderBookSnapshot.Asks:type_name -> pbM.Limit
-	10, // 7: pbM.Trades.Trades:type_name -> pbM.Trade
-	11, // 8: pbM.Trade.Time:type_name -> google.protobuf.Timestamp
-	0,  // 9: pbM.MatchingEngine.PlaceOrder:input_type -> pbM.PlaceOrderReq
-	3,  // 10: pbM.MatchingEngine.CancelOrder:input_type -> pbM.OrderID
-	4,  // 11: pbM.MatchingEngine.GetCurrentOrders:input_type -> pbM.UserID
-	4,  // 12: pbM.MatchingEngine.GetOrders:input_type -> pbM.UserID
-	6,  // 13: pbM.MatchingEngine.CreateOrderBook:input_type -> pbM.Pair
-	6,  // 14: pbM.MatchingEngine.DeleteOrderBook:input_type -> pbM.Pair
-	6,  // 15: pbM.MatchingEngine.StreamTrades:input_type -> pbM.Pair
-	6,  // 16: pbM.MatchingEngine.StreamOrderBookSnapshot:input_type -> pbM.Pair
-	1,  // 17: pbM.MatchingEngine.PlaceOrder:output_type -> pbM.PlaceOrderRes
-	5,  // 18: pbM.MatchingEngine.CancelOrder:output_type -> pbM.Order
-	2,  // 19: pbM.MatchingEngine.GetCurrentOrders:output_type -> pbM.Orders
-	2,  // 20: pbM.MatchingEngine.GetOrders:output_type -> pbM.Orders
-	12, // 21: pbM.MatchingEngine.CreateOrderBook:output_type -> google.protobuf.Empty
-	12, // 22: pbM.MatchingEngine.DeleteOrderBook:output_type -> google.protobuf.Empty
-	9,  // 23: pbM.MatchingEngine.StreamTrades:output_type -> pbM.Trades
-	7,  // 24: pbM.MatchingEngine.StreamOrderBookSnapshot:output_type -> pbM.OrderBookSnapshot
-	17, // [17:25] is the sub-list for method output_type
-	9,  // [9:17] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	3,  // 0: pbM.PlaceOrderRes.Order:type_name -> pbM.Order
+	3,  // 1: pbM.PlaceOrderRes.MatchOrders:type_name -> pbM.Order
+	9,  // 2: pbM.Order.CreatedAt:type_name -> google.protobuf.Timestamp
+	9,  // 3: pbM.Order.ClosedAt:type_name -> google.protobuf.Timestamp
+	6,  // 4: pbM.OrderBookSnapshot.Bids:type_name -> pbM.Limit
+	6,  // 5: pbM.OrderBookSnapshot.Asks:type_name -> pbM.Limit
+	8,  // 6: pbM.Trades.Trades:type_name -> pbM.Trade
+	9,  // 7: pbM.Trade.Time:type_name -> google.protobuf.Timestamp
+	0,  // 8: pbM.MatchingEngine.PlaceOrder:input_type -> pbM.PlaceOrderReq
+	2,  // 9: pbM.MatchingEngine.CancelOrder:input_type -> pbM.OrderID
+	4,  // 10: pbM.MatchingEngine.CreateOrderBook:input_type -> pbM.Pair
+	4,  // 11: pbM.MatchingEngine.DeleteOrderBook:input_type -> pbM.Pair
+	4,  // 12: pbM.MatchingEngine.StreamTrades:input_type -> pbM.Pair
+	4,  // 13: pbM.MatchingEngine.StreamOrderBookSnapshot:input_type -> pbM.Pair
+	1,  // 14: pbM.MatchingEngine.PlaceOrder:output_type -> pbM.PlaceOrderRes
+	3,  // 15: pbM.MatchingEngine.CancelOrder:output_type -> pbM.Order
+	10, // 16: pbM.MatchingEngine.CreateOrderBook:output_type -> google.protobuf.Empty
+	10, // 17: pbM.MatchingEngine.DeleteOrderBook:output_type -> google.protobuf.Empty
+	7,  // 18: pbM.MatchingEngine.StreamTrades:output_type -> pbM.Trades
+	5,  // 19: pbM.MatchingEngine.StreamOrderBookSnapshot:output_type -> pbM.OrderBookSnapshot
+	14, // [14:20] is the sub-list for method output_type
+	8,  // [8:14] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_matchingEngine_proto_init() }
@@ -939,18 +827,6 @@ func file_proto_matchingEngine_proto_init() {
 			}
 		}
 		file_proto_matchingEngine_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*Orders); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_matchingEngine_proto_msgTypes[3].Exporter = func(v any, i int) any {
 			switch v := v.(*OrderID); i {
 			case 0:
 				return &v.state
@@ -962,19 +838,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*UserID); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_proto_matchingEngine_proto_msgTypes[5].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[3].Exporter = func(v any, i int) any {
 			switch v := v.(*Order); i {
 			case 0:
 				return &v.state
@@ -986,7 +850,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[6].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[4].Exporter = func(v any, i int) any {
 			switch v := v.(*Pair); i {
 			case 0:
 				return &v.state
@@ -998,7 +862,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[7].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[5].Exporter = func(v any, i int) any {
 			switch v := v.(*OrderBookSnapshot); i {
 			case 0:
 				return &v.state
@@ -1010,7 +874,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[8].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[6].Exporter = func(v any, i int) any {
 			switch v := v.(*Limit); i {
 			case 0:
 				return &v.state
@@ -1022,7 +886,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[9].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[7].Exporter = func(v any, i int) any {
 			switch v := v.(*Trades); i {
 			case 0:
 				return &v.state
@@ -1034,7 +898,7 @@ func file_proto_matchingEngine_proto_init() {
 				return nil
 			}
 		}
-		file_proto_matchingEngine_proto_msgTypes[10].Exporter = func(v any, i int) any {
+		file_proto_matchingEngine_proto_msgTypes[8].Exporter = func(v any, i int) any {
 			switch v := v.(*Trade); i {
 			case 0:
 				return &v.state
@@ -1053,7 +917,7 @@ func file_proto_matchingEngine_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_proto_matchingEngine_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

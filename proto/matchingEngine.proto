@@ -11,9 +11,6 @@ service MatchingEngine {
     rpc PlaceOrder(PlaceOrderReq) returns (PlaceOrderRes) {}
     rpc CancelOrder(OrderID) returns (Order) {}
 
-    rpc GetCurrentOrders(UserID) returns (Orders) {}
-    rpc GetOrders(UserID) returns (Orders) {}
-
     rpc CreateOrderBook(Pair) returns (google.protobuf.Empty) {}
     rpc DeleteOrderBook(Pair) returns (google.protobuf.Empty) {}
 
@@ -35,16 +32,8 @@ message PlaceOrderRes {
     repeated Order MatchOrders = 2;
 }
 
-message Orders {
-    repeated Order Orders = 1;
-}
-
 message OrderID {
     int64 OrderID = 1;
-}
-
-message UserID {
-    int64 UserID = 1;
 }
 
 message Order {
